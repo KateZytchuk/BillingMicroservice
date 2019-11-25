@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class Bill {
+    private long id;
     private double amount;
     private boolean babySeat;
     private boolean englishDriver;
@@ -21,19 +22,21 @@ public class Bill {
     // private String startAddress;
     // private String destinationAddress;
 
-    public Bill(@JsonProperty("babySeat") boolean babySeat,
+    public Bill(@JsonProperty("id") long id,
+                @JsonProperty("babySeat") boolean babySeat,
                 @JsonProperty("english") boolean englishDriver,
                 @JsonProperty("conditioner") boolean conditioner,
                 @JsonProperty("pet") boolean pet,
                 @JsonProperty("courier") boolean courier,
                 @JsonProperty("nonsmoker") boolean nonSmoker,
-                @JsonProperty("conditioner") boolean silence,
+                @JsonProperty("silence") boolean silence,
                 @JsonProperty("type") String carType,
                 @JsonProperty("distance") double distance,
                 @JsonProperty("paymentMode") String paymentMode) {
+        this.id = id;
         this.babySeat = babySeat;
         this.englishDriver = englishDriver;
-        this.conditioner=conditioner;
+        this.conditioner = conditioner;
         this.pet = pet;
         this.courier = courier;
         this.nonSmoker = nonSmoker;
