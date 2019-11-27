@@ -1,27 +1,24 @@
 package com.zaets39.billing.services;
 
-import com.zaets39.billing.dao.BillingDAO;
+import com.zaets39.billing.constants.Fares;
 import com.zaets39.billing.models.Bill;
+import com.zaets39.billing.repositories.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BillingService {
-    private final BillingDAO<Bill> billingDAO;
-
     @Autowired
-    public  BillingService(@Qualifier("postgres") BillingDAO<Bill> billingDAO){
-        this.billingDAO = billingDAO;
+    private BillRepository billRepository;
+
+    public List<Bill> getAllBills() {
+        return billRepository.findAll();
     }
-    public List<Bill> getAllBills()
-    {
-        return billingDAO.getAll();
-    }
-    public double countAmount(Bill bill)
-    {
-       return billingDAO.countBill(bill);
+
+    public double countAmount(Bill bill) {
+        Fares fares = new Fares();
+        return (fares.MIN_PRICE + fares.MAX_PRICE) / 2;
     }
 }
