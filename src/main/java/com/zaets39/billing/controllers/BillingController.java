@@ -6,7 +6,7 @@ import com.zaets39.billing.services.BillingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -14,36 +14,38 @@ import java.util.List;
 @RestController
 
 public class BillingController {
-    @Autowired
+
     private BillingService billingService;
-    @Autowired
     private BillRepository billRepository;
 
-//    @Autowired
-//    public BillingController(BillingService billingService, BillRepository billRepository) {
-//        this.billingService = billingService;
-//        this.billRepository = billRepository;
-//    }
+    @Autowired
+    public BillingController(BillingService billingService, BillRepository billRepository) {
+        this.billingService = billingService;
+        this.billRepository = billRepository;
+    }
 
     @GetMapping("/all")
     public List<Bill> showAll() {
-        return billRepository.findAll();
-    }
-
-    @PostMapping("/countInRange")
-    public double countAmount(Bill bill) {
-        return billingService.countAmount(bill);
+        return billingService.getAllBills();
     }
 
     @PostMapping("/add")
-    public long add(@RequestBody Bill newBill) {
+    public long add(@RequestParam String paymentMode,
+                    @RequestParam boolean pet,
+                    @RequestParam boolean conditioner,
+                    @RequestParam boolean courier,
+                    @RequestParam boolean englishDriver,
+                    @RequestParam boolean babySeat,
+                    @RequestParam boolean nonSmoker,
+                    @RequestParam boolean silence,
+                    @RequestParam String carType,
+                    @RequestParam double distance) {
+        Bill newBill = new Bill(babySeat, englishDriver, conditioner, pet,
+                courier, nonSmoker, silence, carType, distance,
+                paymentMode);
+        double amount = billingService.countAmount(newBill);
+        newBill.setAmount(amount);
         billRepository.save(newBill);
         return newBill.getId();
     }
-/*
-    @PostMapping("/count")
-    public Bill addWithoutAmount(Bill bill) {
-        //
-    }
- */
 }
