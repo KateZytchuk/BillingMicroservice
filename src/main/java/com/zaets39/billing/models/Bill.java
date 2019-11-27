@@ -34,10 +34,11 @@ public class Bill {
     //I`m not sure, about my need for these fields
     // private String startAddress;
     // private String destinationAddress;
+    public Bill() {
+    }
 
     //Rewrite constructor
-    public Bill(@JsonProperty("id") long id,
-                @JsonProperty("babySeat") boolean babySeat,
+    public Bill(@JsonProperty("babySeat") boolean babySeat,
                 @JsonProperty("english") boolean englishDriver,
                 @JsonProperty("conditioner") boolean conditioner,
                 @JsonProperty("pet") boolean pet,
@@ -47,7 +48,6 @@ public class Bill {
                 @JsonProperty("type") String carType,
                 @JsonProperty("distance") double distance,
                 @JsonProperty("paymentMode") String paymentMode) {
-        this.id = id;
         this.babySeat = babySeat;
         this.englishDriver = englishDriver;
         this.conditioner = conditioner;
