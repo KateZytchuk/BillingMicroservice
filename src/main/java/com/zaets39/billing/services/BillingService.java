@@ -22,6 +22,6 @@ public class BillingService {
     }
     public double countAmount(Bill bill)
     {
-       return billingDAO.insertBill(bill);
+       return billingDAO.countBill(bill);
     }
 }

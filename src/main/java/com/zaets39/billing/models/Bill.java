@@ -2,11 +2,21 @@ package com.zaets39.billing.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.springframework.lang.NonNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Data
+@Entity
+@Table(name = "bills")
 public class Bill {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NonNull
     private double amount;
+
     private boolean babySeat;
     private boolean englishDriver;
     private boolean conditioner;
@@ -14,14 +24,18 @@ public class Bill {
     private boolean courier;
     private boolean nonSmoker;
     private boolean silence;
+    @NotBlank
     private String carType;
+    @NonNull
     private double distance;
+    @NotBlank
     private String paymentMode;
 
     //I`m not sure, about my need for these fields
     // private String startAddress;
     // private String destinationAddress;
 
+    //Rewrite constructor
     public Bill(@JsonProperty("id") long id,
                 @JsonProperty("babySeat") boolean babySeat,
                 @JsonProperty("english") boolean englishDriver,

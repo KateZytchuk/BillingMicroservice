@@ -34,7 +34,7 @@ public class PostgresBillDAO implements BillingDAO<Bill> {
     }
 
     @Override
-    public double insertBill(Bill bill) {
+    public double countBill(Bill bill) {
         double amount =40+ bill.getDistance() * 7;
         long id = bill.getId();
         jdbcTemplate.update("update bills set amount = (?) where id = (?)", amount, id);
