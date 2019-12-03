@@ -1,4 +1,4 @@
-package com.zaets39.billing.constants;
+package com.zaets39.billing.constants.trucks;
 
 public enum TruckTypes {
     LIGHT,

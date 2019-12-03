@@ -1,0 +1,26 @@
+{
+  "carType": "ECONOM",
+  "distance": 22,
+  "paymentMode": "CASH",
+  "babySeat": true,
+  "englishDriver": false,
+  "conditioner": true,
+  "pet": true,
+  "courier": false,
+  "nonSmoker": true,
+  "silence": false
+}
+________________________________________________________________________________
+{
+  "carType": "ECONOM",
+  "distance": 15,
+  "paymentMode": "CASH",
+  "babySeat": true,
+  "englishDriver": true,
+  "conditioner": true,
+  "pet": true,
+  "courier": true,
+  "nonSmoker": true,
+  "silence": true
+}
+________________________________________________________________________________
